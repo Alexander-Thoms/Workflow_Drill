@@ -1,10 +1,10 @@
 [
   {
     "adminName": "admin",
-    "adminEmail": "admin123@gmail.com",
+    "adminEmail": "admin123@email.com",
     "phoneNumber": "7054920000",
     "companyName": "AI company",
-    "companyAddress": "1223 main street",
-    "timestamp": "2026-07-14T20:27:29.038Z"
+    "companyAddress": "123 main street",
+    "timestamp": "2026-07-14T21:01:50.471Z"
   }
 ]

@@ -8,6 +8,15 @@ const helmet = require('helmet');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+const expressratelimit = require('express-rate-limit');
+
+const limit = expressratelimit({
+    windowMs: 1 * 60 * 1000, // one min
+    max: 10,
+    message: "too many requests from this IP!"
+});
+
+
 // ============================
 // SECURE CONFIGURATION
 // ============================
@@ -22,7 +31,28 @@ const TRUSTED_HOST = process.env.TRUSTED_HOST || null;
 // Rate limiting configuration
 const RATE_LIMIT_WINDOW = 15 * 60 * 1000; // 15 minutes
 const RATE_LIMIT_MAX = 100; // max requests per window
+const RATE_LIMIT_MAX_IPS = 10000; // max unique IPs to track (CWE-770 fix)
 const requestHistory = new Map();
+
+// Periodic cleanup of stale IPs to prevent memory leak (CWE-770)
+setInterval(() => {
+  const now = Date.now();
+  for (const [ip, timestamps] of requestHistory.entries()) {
+    const recent = timestamps.filter(t => now - t < RATE_LIMIT_WINDOW);
+    if (recent.length === 0) {
+      requestHistory.delete(ip);
+    } else if (recent.length !== timestamps.length) {
+      requestHistory.set(ip, recent);
+    }
+  }
+  // Enforce max IPs limit
+  if (requestHistory.size > RATE_LIMIT_MAX_IPS) {
+    const entries = Array.from(requestHistory.entries());
+    entries.sort((a, b) => a[1][0] - b[1][0]); // Sort by oldest request
+    const toDelete = entries.slice(0, entries.length - RATE_LIMIT_MAX_IPS);
+    toDelete.forEach(([ip]) => requestHistory.delete(ip));
+  }
+}, 5 * 60 * 1000); // Clean up every 5 minutes
 
 const submittedData = [];
 const dataFile = path.join(__dirname, 'data', 'settings.json');
@@ -80,9 +110,7 @@ async function saveData() {
   }
 }
 
-// ============================
-// RATE LIMITING WITH MEMORY LEAK FIX
-// ============================
+
 function rateLimit(req, res, next) {
   const ip = req.ip || req.connection.remoteAddress || 'unknown';
   const now = Date.now();
@@ -123,10 +151,10 @@ function isAuthenticated(req, res, next) {
   const token = authHeader.split(' ')[1];
   
   // Constant-time comparison to prevent timing attacks
-  if (!crypto.timingSafeEqual(
-    Buffer.from(token),
-    Buffer.from(ADMIN_TOKEN)
-  )) {
+  // timingSafeEqual requires buffers of equal length
+  const tokenBuffer = Buffer.from(token);
+  const adminTokenBuffer = Buffer.from(ADMIN_TOKEN);
+  if (tokenBuffer.length !== adminTokenBuffer.length || !crypto.timingSafeEqual(tokenBuffer, adminTokenBuffer)) {
     return res.status(401).json({
       success: false,
       error: 'Invalid credentials'
@@ -147,7 +175,7 @@ app.use(rateLimit);
 // ROUTES
 // ============================
 // Serve index.html with ADMIN_TOKEN injected (MUST be before static middleware)
-app.get('/', (req, res) => {
+app.get('/', rateLimit, (req, res) => {
   const indexPath = path.join(__dirname, 'public', 'index.html');
   fs.readFile(indexPath, 'utf8')
     .then(html => {
