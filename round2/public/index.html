@@ -82,11 +82,11 @@
 
                         <div class="mb-4">
                             <label class="block text-sm font-medium text-gray-700 dark:text-gray-200" for="phoneNumber">
-                                Phone Number
+                                Phone Number <span class="text-red-500">*</span>
                             </label>
                             <input type="tel" id="phoneNumber" name="phoneNumber" maxlength="20"
                                 class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
-                                placeholder="Enter your phone number" aria-describedby="phoneNumberError" aria-invalid="false">
+                                placeholder="Enter your phone number" required aria-required="true" aria-describedby="phoneNumberError" aria-invalid="false">
                             <span class="error" id="phoneNumberError"></span>
                         </div>
 

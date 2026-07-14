@@ -225,12 +225,12 @@ app.post('/submit-settings', isAuthenticated, async (req, res) => {
       errors.push('Admin email must be 100 characters or less');
     }
 
-    if (phoneNumber) {
-      if (typeof phoneNumber !== 'string' || !/^[\d\s+()-]+$/.test(phoneNumber)) {
-        errors.push('Phone number must be valid');
-      } else if (phoneNumber.length > 20) {
-        errors.push('Phone number must be 20 characters or less');
-      }
+    if (!phoneNumber || typeof phoneNumber !== 'string' || phoneNumber.trim().length === 0) {
+      errors.push('Phone number is required');
+    } else if (!/^[\d\s+()-]+$/.test(phoneNumber)) {
+      errors.push('Phone number must be valid');
+    } else if (phoneNumber.length > 20) {
+      errors.push('Phone number must be 20 characters or less');
     }
 
     if (!companyName || typeof companyName !== 'string' || companyName.trim().length === 0) {

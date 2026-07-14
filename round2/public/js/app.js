@@ -88,7 +88,7 @@ function validateForm() {
     const fields = [
         { id: 'adminName', value: document.getElementById('adminName').value, errorId: 'adminNameError', required: true, maxLength: 50 },
         { id: 'adminEmail', value: document.getElementById('adminEmail').value, errorId: 'adminEmailError', required: true, email: true, maxLength: 100 },
-        { id: 'phoneNumber', value: document.getElementById('phoneNumber').value, errorId: 'phoneNumberError', phone: true, maxLength: 20 },
+        { id: 'phoneNumber', value: document.getElementById('phoneNumber').value, errorId: 'phoneNumberError', required: true, phone: true, maxLength: 20 },
         { id: 'companyName', value: document.getElementById('companyName').value, errorId: 'companyNameError', required: true, maxLength: 100 },
         { id: 'companyAddress', value: document.getElementById('companyAddress').value, errorId: 'companyAddressError', required: true, maxLength: 500 }
     ];

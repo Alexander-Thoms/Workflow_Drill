@@ -7,12 +7,12 @@
 - Data storage in data/ directory
 
 ## 2. Validation Rules
-- Required fields: adminName, adminEmail, companyName, companyAddress
+- Required fields: adminName, adminEmail, phoneNumber, companyName, companyAddress
 - Email validation: Must be in valid email format
 - Length constraints:
   - adminName: max 50 characters
   - adminEmail: max 100 characters
-  - phoneNumber: max 20 characters (if provided)
+  - phoneNumber: max 20 characters
   - companyName: max 100 characters
   - companyAddress: max 500 characters
 

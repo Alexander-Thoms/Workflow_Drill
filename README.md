@@ -39,8 +39,8 @@ round2/
 ## Validation Constraints
 
 - Email: valid format, max 100 characters.
-- Phone: valid format if provided, max 20 characters.
-- `adminName`, `adminEmail`, `companyName`, `companyAddress`: required.
+- Phone: required, valid format, max 20 characters.
+- `adminName`, `adminEmail`, `phoneNumber`, `companyName`, `companyAddress`: required.
 - Length caps: adminName 50, adminEmail 100, phoneNumber 20, companyName 100, companyAddress 500.
 
 ## Running the Application
