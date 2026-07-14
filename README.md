@@ -1,63 +1,75 @@
-Create a complete Node.js/Express application with a responsive admin settings page featuring a form with comprehensive validation. The application should include:
+# Admin Settings Form
 
-1. File Structure:
-   - server.js (Express server with validation logic)
-   - package.json (with proper dependencies)
-   - public/index.html (form UI with Tailwind CSS)
-   - public/assets/ (static files)
-   - data/ (JSON data storage directory)
+A Node.js/Express application with a responsive admin settings page. The form
+posts settings (admin name, email, phone, company name/address) which are
+validated server-side, persisted to JSON, and displayed in a live dashboard.
+The UI includes light/dark mode, accessibility support, and printable output.
 
-2. Features:
-   - Admin authentication using Bearer token (ADMIN_TOKEN environment variable)
-   - Settings form with fields for: adminName, adminEmail, phoneNumber, companyName, companyAddress
-   - Server-side validation with constraints: required fields, email format, max lengths
-   - Client-side validation for better UX
-   - Dashboard to display all submitted form data
-   - Error handling with user-friendly messages
-   - JSON data persistence
+The application lives in the `round2/` directory.
 
-3. Validation Constraints:
-   - Email: valid format, max 100 characters
-   - Phone: valid format if provided, max 20 characters
-   - All fields: required if in config, max length constraints
-   - All text fields: max 100 characters except address (max 500)
+## File Structure
 
-4. User Experience:
-   - Real-time client validation
-   - Form submission loading state
-   - Success/error message display
-   - Dynamic dashboard updates without page refresh
+```
+round2/
+  .env                     # ADMIN_TOKEN and server configuration
+  server.js                # Express server, validation, auth, persistence
+  public/
+    index.html             # Single page UI (Tailwind CSS via CDN)
+    css/
+      styles.css           # App styles, print rules, accessibility helpers
+    js/
+      app.js               # Front-end logic (form, validation, theme, print)
+  data/
+    settings.json          # JSON data storage
+```
 
-5. Testing:
-   - Write unit tests for validation functions
-   - Write integration tests for API endpoints
-   - Verify all validation rules
-   - Test form submission flow
+## Features
+
+- **Authentication**: Bearer token via the `ADMIN_TOKEN` environment variable (loaded from `round2/.env`).
+- **Settings form** with fields: `adminName`, `adminEmail`, `phoneNumber`, `companyName`, `companyAddress`.
+- **Server-side validation**: required fields, email format, max lengths (name 50, email 100, phone 20, company 100, address 500).
+- **Client-side validation** with real-time feedback and `aria-invalid`/`aria-describedby` for screen readers.
+- **Dashboard** that lists all submitted records and reloads on submit, with no full page refresh.
+- **Persistence**: submitted settings are saved to `data/settings.json` and reloaded into memory on server start, so they survive restarts.
+- **Light/Dark mode**: toggle button (moon/sun) with `localStorage` persistence and no-flash initialization.
+- **Accessibility**: skip link, ARIA landmarks, `aria-live` status regions, decorative SVGs marked `aria-hidden`, placeholder hints.
+- **Print**: a Print button renders only the submitted settings (print CSS forces readable output in either theme).
+- **Rate limiting**: in-memory limiter with stale-entry cleanup (CWE-770) plus `express-rate-limit` on the index route.
+
+## Validation Constraints
+
+- Email: valid format, max 100 characters.
+- Phone: valid format if provided, max 20 characters.
+- `adminName`, `adminEmail`, `companyName`, `companyAddress`: required.
+- Length caps: adminName 50, adminEmail 100, phoneNumber 20, companyName 100, companyAddress 500.
 
 ## Running the Application
 
-1. Install dependencies:
+1. Install dependencies (from the repo root):
    ```bash
    npm install
    ```
 
-2. Set the ADMIN_TOKEN environment variable (required):
-   ```bash
-   # Windows (PowerShell)
-   $env:ADMIN_TOKEN="your-secure-token-here"
-   
-   # Linux/macOS
-   export ADMIN_TOKEN="your-secure-token-here"
+2. Configure the admin token. The server reads `round2/.env`, for example:
    ```
+   ADMIN_TOKEN=change_this_to_a_strong_random_token_at_least_32_chars
+   PORT=3000
+   ```
+   Alternatively set the environment variable directly before starting.
 
-3. Run the server:
+3. Run the server (from the `round2/` directory):
    ```bash
+   cd round2
    node server.js
    ```
 
-4. Open http://localhost:3000 in your browser
+4. Open http://localhost:3000 in your browser.
 
-5. Use the ADMIN_TOKEN as a Bearer token for API authentication:
-   - Header: `Authorization: Bearer your-secure-token-here`
+5. API requests require the token as a Bearer credential:
+   - Header: `Authorization: Bearer <ADMIN_TOKEN>`
 
-Deliverable: A fully functional Express application with a complete admin interface.
+## API Endpoints
+
+- `GET /` — serves the admin settings page (rate limited).
+- `POST /submit-settings` — accepts and validates settings JSON (auth required).
+- `GET /settings-data` — returns all submitted settings (auth required).
