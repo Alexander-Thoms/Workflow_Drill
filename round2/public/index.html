@@ -464,7 +464,33 @@
             return isValid;
         }
 
+        async function loadLatestSettings() {
+            try {
+                const response = await fetch('/settings-data', {
+                    headers: getAuthHeaders()
+                });
+
+                if (!response.ok) {
+                    return;
+                }
+
+                const data = await response.json();
+
+                if (Array.isArray(data) && data.length > 0) {
+                    const latest = data[data.length - 1];
+                    document.getElementById('adminName').value = latest.adminName || '';
+                    document.getElementById('adminEmail').value = latest.adminEmail || '';
+                    document.getElementById('phoneNumber').value = latest.phoneNumber || '';
+                    document.getElementById('companyName').value = latest.companyName || '';
+                    document.getElementById('companyAddress').value = latest.companyAddress || '';
+                }
+            } catch (error) {
+                console.error('Error loading latest settings:', error);
+            }
+        }
+
         document.addEventListener('DOMContentLoaded', function () {
+            loadLatestSettings();
             loadSubmittedData();
 
             // Add field-specific validation on blur
