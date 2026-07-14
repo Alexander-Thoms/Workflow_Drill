@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Settings - Settings Form</title>
+    <title>Admin Settings Form</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
         .error {
@@ -11,30 +12,37 @@
             font-size: 0.875rem;
             margin-top: 0.25rem;
         }
+
         .success {
             color: green;
             font-size: 0.875rem;
             margin-top: 0.25rem;
         }
+
         .error-border {
             border-color: red;
         }
+
         .success-border {
             border-color: green;
         }
+
         @media print {
             .no-print {
                 display: none;
             }
+
             body {
                 font-size: 12pt;
             }
+
             .form-section {
                 page-break-inside: avoid;
             }
         }
     </style>
 </head>
+
 <body class="bg-gray-50">
     <header class="bg-white shadow-sm">
         <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8">
@@ -42,7 +50,7 @@
             <p class="text-sm text-gray-500">Manage your application settings</p>
         </div>
     </header>
-    
+
     <main class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
             <div class="lg:col-span-1">
@@ -53,20 +61,22 @@
                             <label class="block text-sm font-medium text-gray-700" for="adminName">
                                 Admin Name <span class="text-red-500">*</span>
                             </label>
-                            <input type="text" id="adminName" name="adminName" maxlength="50" 
-                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" required>
+                            <input type="text" id="adminName" name="adminName" maxlength="50"
+                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                                required>
                             <span class="error" id="adminNameError"></span>
                         </div>
-                        
+
                         <div class="mb-4">
                             <label class="block text-sm font-medium text-gray-700" for="adminEmail">
                                 Admin Email <span class="text-red-500">*</span>
                             </label>
                             <input type="email" id="adminEmail" name="adminEmail" maxlength="100"
-                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" required>
+                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                                required>
                             <span class="error" id="adminEmailError"></span>
                         </div>
-                        
+
                         <div class="mb-4">
                             <label class="block text-sm font-medium text-gray-700" for="phoneNumber">
                                 Phone Number
@@ -75,32 +85,38 @@
                                 class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
                             <span class="error" id="phoneNumberError"></span>
                         </div>
-                        
+
                         <div class="mb-4">
                             <label class="block text-sm font-medium text-gray-700" for="companyName">
                                 Company Name <span class="text-red-500">*</span>
                             </label>
                             <input type="text" id="companyName" name="companyName" maxlength="100"
-                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" required>
+                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                                required>
                             <span class="error" id="companyNameError"></span>
                         </div>
-                        
+
                         <div class="mb-4">
                             <label class="block text-sm font-medium text-gray-700" for="companyAddress">
                                 Company Address <span class="text-red-500">*</span>
                             </label>
                             <textarea id="companyAddress" name="companyAddress" rows="3" maxlength="500"
-                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" required></textarea>
+                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                                required></textarea>
                             <span class="error" id="companyAddressError"></span>
                         </div>
-                        
+
                         <button type="submit" id="submitBtn"
                             class="w-full inline-flex justify-center items-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                             <span id="submitText">Save Settings</span>
                             <span id="loadingText" class="hidden ml-2">
-                                <svg class="animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                <svg class="animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg"
+                                    fill="none" viewBox="0 0 24 24">
+                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
+                                        stroke-width="4"></circle>
+                                    <path class="opacity-75" fill="currentColor"
+                                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                                    </path>
                                 </svg>
                             </span>
                         </button>
@@ -108,14 +124,17 @@
                     <div id="formMessage" class="mt-4"></div>
                 </div>
             </div>
-            
+
             <div class="lg:col-span-2">
                 <div class="bg-white shadow rounded-lg p-6 form-section">
                     <div class="flex justify-between items-center mb-4">
                         <h2 class="text-lg font-medium text-gray-900">Submitted Data</h2>
-                        <button onclick="printData()" class="inline-flex items-center px-3 py-1 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 no-print">
+                        <button onclick="printData()"
+                            class="inline-flex items-center px-3 py-1 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 no-print">
                             <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V8a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V8a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+                            </svg>
                             Print
                         </button>
                     </div>
@@ -126,25 +145,36 @@
             </div>
         </div>
     </main>
-    
+
     <script>
+        // Configuration - ADMIN_TOKEN should be set in a .env file or environment
+        // For development, you can set it here or in localStorage
+        const ADMIN_TOKEN = 'dev-token-change-in-production';
+        
+        function getAuthHeaders() {
+            return {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${ADMIN_TOKEN}`
+            };
+        }
+
         const form = document.getElementById('settingsForm');
         const submitBtn = document.getElementById('submitBtn');
         const submitText = document.getElementById('submitText');
         const loadingText = document.getElementById('loadingText');
         const formMessage = document.getElementById('formMessage');
         const dashboardData = document.getElementById('dashboardData');
-        
-        form.addEventListener('submit', async function(e) {
+
+        form.addEventListener('submit', async function (e) {
             e.preventDefault();
-            
+
             if (!validateForm()) {
                 showMessage('Please fix the errors in the form', 'error');
                 return;
             }
-            
+
             setLoading(true);
-            
+
             const formData = {
                 adminName: document.getElementById('adminName').value,
                 adminEmail: document.getElementById('adminEmail').value,
@@ -153,18 +183,16 @@
                 companyAddress: document.getElementById('companyAddress').value,
                 timestamp: new Date().toISOString()
             };
-            
+
             try {
                 const response = await fetch('/submit-settings', {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
+                    headers: getAuthHeaders(),
                     body: JSON.stringify(formData)
                 });
-                
+
                 const data = await response.json();
-                
+
                 if (data.success) {
                     showMessage('Settings saved successfully!', 'success');
                     form.reset();
@@ -178,14 +206,14 @@
                 setLoading(false);
             }
         });
-        
+
         function validateForm() {
             let isValid = true;
-            
+
             // Clear all error messages and reset borders
             document.querySelectorAll('.error').forEach(el => el.textContent = '');
             document.querySelectorAll('input, textarea').forEach(el => el.classList.remove('error-border'));
-            
+
             const fields = [
                 { id: 'adminName', value: document.getElementById('adminName').value, errorId: 'adminNameError', required: true, maxLength: 50 },
                 { id: 'adminEmail', value: document.getElementById('adminEmail').value, errorId: 'adminEmailError', required: true, email: true, maxLength: 100 },
@@ -193,13 +221,13 @@
                 { id: 'companyName', value: document.getElementById('companyName').value, errorId: 'companyNameError', required: true, maxLength: 100 },
                 { id: 'companyAddress', value: document.getElementById('companyAddress').value, errorId: 'companyAddressError', required: true, maxLength: 500 }
             ];
-            
+
             fields.forEach(field => {
                 const inputElement = document.getElementById(field.id);
                 const errorElement = document.getElementById(field.errorId);
                 inputElement.classList.remove('error-border');
                 errorElement.textContent = '';
-                
+
                 if (field.required && !field.value.trim()) {
                     errorElement.textContent = 'This field is required';
                     inputElement.classList.add('error-border');
@@ -218,79 +246,129 @@
                     isValid = false;
                 }
             });
-            
+
             return isValid;
         }
-        
+
         function showMessage(message, type) {
-            formMessage.innerHTML = `
-                <div class="${type === 'success' ? 'bg-green-50 border-green-200' : 'bg-red-50 border-red-200'} p-3 rounded-md border">
-                    <p class="${type === 'success' ? 'text-green-800' : 'text-red-800'} whitespace-pre-line">${message}</p>
-                </div>
-            `;
-            
-            if (type === 'success') {
+            const wrapper = document.createElement("div");
+            wrapper.className =
+                `${type === "success"
+                    ? "bg-green-50 border-green-200"
+                    : "bg-red-50 border-red-200"} p-3 rounded-md border`;
+
+            const p = document.createElement("p");
+            p.className =
+                `${type === "success"
+                    ? "text-green-800"
+                    : "text-red-800"} whitespace-pre-line`;
+
+            p.textContent = message;   // Safe
+
+            wrapper.appendChild(p);
+
+            formMessage.replaceChildren(wrapper);
+
+            if (type === "success") {
                 setTimeout(() => {
-                    formMessage.innerHTML = '';
+                    formMessage.replaceChildren();
                 }, 5000);
             }
         }
-        
+
         function setLoading(isLoading) {
             submitBtn.disabled = isLoading;
             submitText.textContent = isLoading ? 'Saving...' : 'Save Settings';
             loadingText.classList.toggle('hidden', !isLoading);
         }
-        
+
         async function loadSubmittedData() {
             try {
-                const response = await fetch('/settings-data');
-                if (response.ok) {
-                    const data = await response.json();
-                    
-                    if (data.length === 0) {
-                        dashboardData.innerHTML = '<p class="text-gray-500">No settings submitted yet.</p>';
-                        return;
-                    }
-                    
-                    dashboardData.innerHTML = data.map(item => `
-                        <div class="border rounded-md p-4 bg-gray-50 hover:bg-gray-100 transition-colors">
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <div>
-                                    <p class="text-sm font-medium text-gray-700">Admin Name</p>
-                                    <p class="text-sm text-gray-900">${escapeHtml(item.adminName)}</p>
-                                </div>
-                                <div>
-                                    <p class="text-sm font-medium text-gray-700">Admin Email</p>
-                                    <p class="text-sm text-gray-900">${escapeHtml(item.adminEmail)}</p>
-                                </div>
-                                <div>
-                                    <p class="text-sm font-medium text-gray-700">Phone Number</p>
-                                    <p class="text-sm text-gray-900">${item.phoneNumber ? escapeHtml(item.phoneNumber) : 'N/A'}</p>
-                                </div>
-                                <div>
-                                    <p class="text-sm font-medium text-gray-700">Company Name</p>
-                                    <p class="text-sm text-gray-900">${escapeHtml(item.companyName)}</p>
-                                </div>
-                                <div class="md:col-span-2">
-                                    <p class="text-sm font-medium text-gray-700">Company Address</p>
-                                    <p class="text-sm text-gray-900">${escapeHtml(item.companyAddress)}</p>
-                                </div>
-                                <div class="md:col-span-2">
-                                    <p class="text-xs text-gray-500">Submitted at: ${formatDate(item.timestamp)}</p>
-                                </div>
-                            </div>
-                        </div>
-                    `).join('');
-                } else {
-                    dashboardData.innerHTML = '<p class="text-red-500">Failed to load submitted data.</p>';
+                const response = await fetch('/settings-data', {
+                    headers: getAuthHeaders()
+                });
+
+                if (!response.ok) {
+                    dashboardData.textContent = 'Failed to load submitted data.';
+                    dashboardData.className = 'text-red-500';
+                    return;
                 }
+
+                const data = await response.json();
+
+                // Clear previous content
+                dashboardData.replaceChildren();
+
+                if (!Array.isArray(data) || data.length === 0) {
+                    const empty = document.createElement('p');
+                    empty.className = 'text-gray-500';
+                    empty.textContent = 'No settings submitted yet.';
+                    dashboardData.appendChild(empty);
+                    return;
+                }
+
+                const createField = (label, value, fullWidth = false) => {
+                    const wrapper = document.createElement('div');
+                    if (fullWidth) {
+                        wrapper.className = 'md:col-span-2';
+                    }
+
+                    const title = document.createElement('p');
+                    title.className = 'text-sm font-medium text-gray-700';
+                    title.textContent = label;
+
+                    const content = document.createElement('p');
+                    content.className = 'text-sm text-gray-900';
+                    content.textContent = value ?? 'N/A';
+
+                    wrapper.appendChild(title);
+                    wrapper.appendChild(content);
+
+                    return wrapper;
+                };
+
+                data.forEach(item => {
+                    const card = document.createElement('div');
+                    card.className =
+                        'border rounded-md p-4 bg-gray-50 hover:bg-gray-100 transition-colors';
+
+                    const grid = document.createElement('div');
+                    grid.className = 'grid grid-cols-1 md:grid-cols-2 gap-4';
+
+                    grid.appendChild(createField('Admin Name', item.adminName));
+                    grid.appendChild(createField('Admin Email', item.adminEmail));
+                    grid.appendChild(createField('Phone Number', item.phoneNumber || 'N/A'));
+                    grid.appendChild(createField('Company Name', item.companyName));
+                    grid.appendChild(createField('Company Address', item.companyAddress, true));
+
+                    const footer = document.createElement('div');
+                    footer.className = 'md:col-span-2';
+
+                    const timestamp = document.createElement('p');
+                    timestamp.className = 'text-xs text-gray-500';
+                    timestamp.textContent = `Submitted at: ${formatDate(item.timestamp)}`;
+
+                    footer.appendChild(timestamp);
+                    grid.appendChild(footer);
+
+                    card.appendChild(grid);
+                    dashboardData.appendChild(card);
+                });
+
             } catch (error) {
                 console.error('Error loading data:', error);
-                dashboardData.innerHTML = '<p class="text-red-500">Error loading data.</p>';
+
+                dashboardData.replaceChildren();
+
+                const errorMsg = document.createElement('p');
+                errorMsg.className = 'text-red-500';
+                errorMsg.textContent = 'Error loading data.';
+
+                dashboardData.appendChild(errorMsg);
             }
         }
-        
+
+
         function escapeHtml(text) {
             if (!text) return '';
             return text
@@ -300,7 +378,7 @@
                 .replace(/"/g, '&quot;')
                 .replace(/'/g, '&#039;');
         }
-        
+
         function formatDate(dateString) {
             const date = new Date(dateString);
             return date.toLocaleString('en-US', {
@@ -311,11 +389,11 @@
                 minute: '2-digit'
             });
         }
-        
+
         function printData() {
             const printContent = document.querySelector('.lg\:col-span-2');
             const originalContent = document.body.innerHTML;
-            
+
             document.body.innerHTML = `
                 <div class="print-container">
                     <h1 class="print-header">Submitted Settings Data</h1>
@@ -323,16 +401,16 @@
                     ${printContent.innerHTML}
                 </div>
             `;
-            
+
             window.print();
-            
+
             document.body.innerHTML = originalContent;
             window.location.reload();
         }
-        
+
         // Add real-time validation
         document.querySelectorAll('input, textarea').forEach(input => {
-            input.addEventListener('input', function() {
+            input.addEventListener('input', function () {
                 this.classList.remove('error-border');
                 const errorId = this.id + 'Error';
                 const errorElement = document.getElementById(errorId);
@@ -340,20 +418,20 @@
                     errorElement.textContent = '';
                 }
             });
-            
-            input.addEventListener('blur', function() {
+
+            input.addEventListener('blur', function () {
                 validateSingleInput(this);
             });
         });
-        
+
         function validateSingleInput(input) {
             const errorElement = document.getElementById(input.id + 'Error');
             if (!errorElement) return;
-            
+
             const value = input.value;
             let isValid = true;
             let errorMessage = '';
-            
+
             if (input.hasAttribute('required') && !value.trim()) {
                 isValid = false;
                 errorMessage = 'This field is required';
@@ -374,7 +452,7 @@
                     errorMessage = 'Please enter a valid phone number';
                 }
             }
-            
+
             if (!isValid) {
                 errorElement.textContent = errorMessage;
                 input.classList.add('error-border');
@@ -382,30 +460,31 @@
                 errorElement.textContent = '';
                 input.classList.remove('error-border');
             }
-            
+
             return isValid;
         }
-        
-        document.addEventListener('DOMContentLoaded', function() {
+
+        document.addEventListener('DOMContentLoaded', function () {
             loadSubmittedData();
-            
+
             // Add field-specific validation on blur
-            document.getElementById('adminName').addEventListener('blur', function() {
+            document.getElementById('adminName').addEventListener('blur', function () {
                 validateSingleInput(this);
             });
-            
-            document.getElementById('adminEmail').addEventListener('blur', function() {
+
+            document.getElementById('adminEmail').addEventListener('blur', function () {
                 validateSingleInput(this);
             });
-            
-            document.getElementById('companyName').addEventListener('blur', function() {
+
+            document.getElementById('companyName').addEventListener('blur', function () {
                 validateSingleInput(this);
             });
-            
-            document.getElementById('companyAddress').addEventListener('blur', function() {
+
+            document.getElementById('companyAddress').addEventListener('blur', function () {
                 validateSingleInput(this);
             });
         });
     </script>
 </body>
+
 </html>
