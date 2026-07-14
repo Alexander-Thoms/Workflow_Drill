@@ -189,19 +189,19 @@ Based on the work completed, the following project rules have been established:
 ### 1. Code Organization Rule
 **Rule:** All JavaScript source files must be placed in the root directory or in organized subdirectories. HTML templates must be in a `public/` directory, and static assets must be in a `public/assets/` directory. Data storage must be in a `data/` directory with JSON files.
 
-**Location:** C:\Users\Alexlaptop\nodejs\Frontend_AI_capstone\CLAUDE.md
+**Location:** https://github.com/Alexander-Thoms/Workflow_Drill/blob/main/CLAUDE.md
 **Updated:** 2026-07-14
 
 ### 2. Validation Rule
 **Rule:** All form fields must have server-side validation with the following constraints: required fields (adminName, adminEmail, companyName, companyAddress), email format validation, and specific length limits (adminName: 50 chars, adminEmail: 100 chars, phoneNumber: 20 chars, companyName: 100 chars, companyAddress: 500 chars). Client-side validation must use the same rules as server-side.
 
-**Location:** C:\Users\Alexlaptop\nodejs\Frontend_AI_capstone\CLAUDE.md
+**Location:** https://github.com/Alexander-Thoms/Workflow_Drill/blob/main/CLAUDE.md
 **Updated:** 2026-07-14
 
 ### 3. Authentication Rule
 **Rule:** All sensitive endpoints must use HTTP Basic Auth with credentials: admin/admin123. Authentication must be checked before processing any form submissions or data access. Credentials should be stored in environment variables in production.
 
-**Location:** C:\Users\Alexlaptop\nodejs\Frontend_AI_capstone\CLAUDE.md
+**Location:** https://github.com/Alexander-Thoms/Workflow_Drill/blob/main/CLAUDE.md
 **Updated:** 2026-07-14
 
 ## Technical Debt Analysis
