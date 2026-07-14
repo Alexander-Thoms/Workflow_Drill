@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const path = require('path');
-const fs = require('fs').promised; // Use async fs
+const fs = require('fs').promises; // Use async fs
 const crypto = require('crypto');
 const helmet = require('helmet');
 
@@ -139,14 +139,31 @@ function isAuthenticated(req, res, next) {
 // ============================
 // MIDDLEWARE SETUP
 // ============================
-app.use(express.static('public'));
 app.use(express.json({ limit: '10kb' }));
 app.use(express.urlencoded({ extended: true, limit: '10kb' }));
 app.use(rateLimit);
 
+// ============================
+// ROUTES
+// ============================
+// Serve index.html with ADMIN_TOKEN injected (MUST be before static middleware)
+app.get('/', (req, res) => {
+  const indexPath = path.join(__dirname, 'public', 'index.html');
+  fs.readFile(indexPath, 'utf8')
+    .then(html => {
+      const tokenMeta = `<meta name="admin-token" content="${ADMIN_TOKEN}">`;
+      const modifiedHtml = html.replace('</head>', `${tokenMeta}\n</head>`);
+      res.send(modifiedHtml);
+    })
+    .catch(() => res.status(500).send('Error loading page'));
+});
+
+// Serve other static files
+app.use(express.static('public', { index: false }));
+
 // Use Helmet for comprehensive security headers
 app.use(helmet({
-  contentSecurityPolicy: false, // Configure based on your needs
+  contentSecurityPolicy: false,
   crossOriginEmbedderPolicy: false,
   crossOriginOpenerPolicy: false,
   crossOriginResourcePolicy: false
@@ -159,9 +176,6 @@ app.use((req, res, next) => {
   next();
 });
 
-// ============================
-// ROUTES
-// ============================
 app.post('/submit-settings', isAuthenticated, async (req, res) => {
   try {
     const { adminName, adminEmail, phoneNumber, companyName, companyAddress } = req.body;

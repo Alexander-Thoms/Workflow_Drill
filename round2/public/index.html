@@ -147,24 +147,15 @@
     </main>
 
     <script>
-        // Configuration - ADMIN_TOKEN must match the server's ADMIN_TOKEN env var
-        // For development, set in localStorage or change this default
-        const ADMIN_TOKEN = localStorage.getItem('admin_token') || 'test-token-123';
+        // Read ADMIN_TOKEN from meta tag injected by server
+        const tokenMeta = document.querySelector('meta[name="admin-token"]');
+        const ADMIN_TOKEN = tokenMeta ? tokenMeta.getAttribute('content') : '';
         
         function getAuthHeaders() {
             return {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${ADMIN_TOKEN}`
             };
-        }
-        
-        // Allow setting token via URL param for testing: ?token=your-token
-        const urlParams = new URLSearchParams(window.location.search);
-        const tokenParam = urlParams.get('token');
-        if (tokenParam) {
-            localStorage.setItem('admin_token', tokenParam);
-            // Reload without token param to clean URL
-            window.history.replaceState({}, document.title, window.location.pathname);
         }
 
         const form = document.getElementById('settingsForm');
