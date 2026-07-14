@@ -34,7 +34,7 @@ round2/
 - **Light/Dark mode**: toggle button (moon/sun) with `localStorage` persistence and no-flash initialization.
 - **Accessibility**: skip link, ARIA landmarks, `aria-live` status regions, decorative SVGs marked `aria-hidden`, placeholder hints.
 - **Print**: a Print button renders only the submitted settings (print CSS forces readable output in either theme).
-- **Rate limiting**: in-memory limiter with stale-entry cleanup (CWE-770) plus `express-rate-limit` on the index route.
+- **Rate limiting**: custom in-memory limiter applied to all routes, with periodic stale-entry cleanup and a max-tracked-IPs cap (CWE-770).
 
 ## Validation Constraints
 
