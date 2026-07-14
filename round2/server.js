@@ -307,11 +307,18 @@ if (process.env.NODE_ENV === 'production') {
 // ============================
 // GRACEFUL SHUTDOWN
 // ============================
-const server = app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-  console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
-  console.log('Configure ADMIN_TOKEN environment variable for authentication');
-});
+let server;
+
+async function startServer() {
+  await loadData();
+  server = app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+    console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
+    console.log('Configure ADMIN_TOKEN environment variable for authentication');
+  });
+}
+
+startServer();
 
 // Handle termination signals gracefully
 process.on('SIGTERM', async () => {
