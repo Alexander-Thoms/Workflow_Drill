@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Settings Form</title>
+    <title>Contact Form</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -28,8 +28,8 @@
     <header class="bg-white dark:bg-gray-800 shadow-sm no-print">
         <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4">
             <div>
-                <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Admin Settings</h1>
-                <p class="text-sm text-gray-500 dark:text-gray-400">Manage your application settings</p>
+                <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Contact Us</h1>
+                <p class="text-sm text-gray-500 dark:text-gray-400">Send us your details</p>
             </div>
             <button id="themeToggle" type="button"
                 class="inline-flex items-center gap-2 px-3 py-2 rounded-md border border-gray-300 dark:border-gray-600 text-sm font-medium text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500"
@@ -58,11 +58,11 @@
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
             <div class="lg:col-span-1 no-print">
                 <div class="bg-white dark:bg-gray-800 shadow rounded-lg p-6 form-section" role="region" aria-labelledby="formHeading">
-                    <h2 id="formHeading" class="text-lg font-medium text-gray-900 dark:text-white mb-4">Settings Form</h2>
+                    <h2 id="formHeading" class="text-lg font-medium text-gray-900 dark:text-white mb-4">Contact Form</h2>
                     <form id="settingsForm" novalidate aria-labelledby="formHeading" tabindex="-1">
                         <div class="mb-4">
                             <label class="block text-sm font-medium text-gray-700 dark:text-gray-200" for="adminName">
-                                Admin Name <span class="text-red-500">*</span>
+                                Full Name <span class="text-red-500">*</span>
                             </label>
                             <input type="text" id="adminName" name="adminName" maxlength="50"
                                 class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
@@ -72,7 +72,7 @@
 
                         <div class="mb-4">
                             <label class="block text-sm font-medium text-gray-700 dark:text-gray-200" for="adminEmail">
-                                Admin Email <span class="text-red-500">*</span>
+                                Email <span class="text-red-500">*</span>
                             </label>
                             <input type="email" id="adminEmail" name="adminEmail" maxlength="100"
                                 class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
@@ -92,7 +92,7 @@
 
                         <div class="mb-4">
                             <label class="block text-sm font-medium text-gray-700 dark:text-gray-200" for="companyName">
-                                Company Name <span class="text-red-500">*</span>
+                                Company <span class="text-red-500">*</span>
                             </label>
                             <input type="text" id="companyName" name="companyName" maxlength="100"
                                 class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
@@ -102,7 +102,7 @@
 
                         <div class="mb-4">
                             <label class="block text-sm font-medium text-gray-700 dark:text-gray-200" for="companyAddress">
-                                Company Address <span class="text-red-500">*</span>
+                                Address <span class="text-red-500">*</span>
                             </label>
                             <textarea id="companyAddress" name="companyAddress" rows="3" maxlength="500"
                                 class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
@@ -112,7 +112,7 @@
 
                         <button type="submit" id="submitBtn"
                             class="w-full inline-flex justify-center items-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                            <span id="submitText">Save Settings</span>
+                            <span id="submitText">Submit Contact</span>
                             <span id="loadingText" class="hidden ml-2" role="status" aria-live="polite">
                                 <svg class="animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg"
                                     fill="none" viewBox="0 0 24 24" aria-hidden="true">
@@ -131,12 +131,12 @@
 
             <div class="lg:col-span-2" id="printArea" role="region" aria-labelledby="dataHeading">
                 <div class="print-only mb-4">
-                    <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Submitted Settings Data</h1>
+                    <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Submitted Contacts</h1>
                     <p class="text-sm text-gray-500 dark:text-gray-400">Generated on: <span id="printDate"></span></p>
                 </div>
                 <div class="bg-white dark:bg-gray-800 shadow rounded-lg p-6 form-section">
                     <div class="flex justify-between items-center mb-4">
-                        <h2 id="dataHeading" class="text-lg font-medium text-gray-900 dark:text-white no-print">Submitted Data</h2>
+                        <h2 id="dataHeading" class="text-lg font-medium text-gray-900 dark:text-white no-print">Submitted Contacts</h2>
                         <button onclick="printData()"
                             class="inline-flex items-center px-3 py-1 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 no-print">
                             <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -147,7 +147,7 @@
                         </button>
                     </div>
                     <div id="dashboardData" class="space-y-4" tabindex="-1" role="status" aria-live="polite" aria-relevant="additions text">
-                        <p class="text-gray-500 dark:text-gray-400">No settings submitted yet.</p>
+                        <p class="text-gray-500 dark:text-gray-400">No contacts submitted yet.</p>
                     </div>
                 </div>
             </div>
