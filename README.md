@@ -35,6 +35,7 @@ round2/
 - **Accessibility**: skip link, ARIA landmarks, `aria-live` status regions, decorative SVGs marked `aria-hidden`, placeholder hints.
 - **Print**: a Print button renders only the submitted settings (print CSS forces readable output in either theme).
 - **Rate limiting**: custom in-memory limiter applied to all routes, with periodic stale-entry cleanup and a max-tracked-IPs cap (CWE-770).
+- **Security headers**: [Helmet](https://www.npmjs.com/package/helmet) is applied to set secure HTTP response headers (e.g. `X-Content-Type-Options`, `X-Frame-Options`, `Strict-Transport-Security`), plus a custom `Referrer-Policy` and `Permissions-Policy` (geolocation, microphone, and camera disabled).
 
 ## Validation Constraints
 
